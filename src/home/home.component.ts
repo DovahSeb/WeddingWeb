@@ -39,7 +39,7 @@ export class HomeComponent {
       confirmation: result.confirmation
     };
 
-    console.log(confirmInvitation);
+    this.invitationService.confirmInvitation(confirmInvitation);
     this.resetRsvpForm();
   }
 
