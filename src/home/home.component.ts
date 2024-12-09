@@ -28,7 +28,7 @@ export class HomeComponent {
   }
 
   countdownInit(){
-    this.countdownService.startCountdown('2025-01-14T00:00:00').subscribe((data) => {
+    this.countdownService.startCountdown('2025-01-14T10:30:00').subscribe((data) => {
       this.countdown = data;
     });
   }
