@@ -15,7 +15,9 @@ export class HomeComponent {
   countdown = { days: 0, hours: 0, minutes: 0, seconds: 0 };
   showRsvpForm = false;
   inviteCode: string = '';
-  confirmation: string = ''; // Either "Oui" or "Non"
+  confirmation: string = '';
+  inviteCodeMessage: string = '';
+  isCodeValid: boolean | null = null;
 
   private readonly countdownService = inject(CountdownService);
   private readonly invitationService = inject(InvitationService);
@@ -33,6 +35,23 @@ export class HomeComponent {
 
   toggleRsvpForm() {
     this.showRsvpForm = !this.showRsvpForm;
+  }
+
+  validateInviteCode(): void {
+    if (this.inviteCode.length >= 8) {
+      this.invitationService.isValidConfirmationCode(this.inviteCode).subscribe({
+        next: (response) => {
+          this.isCodeValid = response.isValid;
+          if (!response.isValid) {
+            this.inviteCodeMessage = 'Code déjà utilisé ou invalide';
+          } else {
+            this.inviteCodeMessage = '';
+          }
+        }
+      });
+    } else {
+      this.inviteCodeMessage = '';
+    }
   }
 
   confirmInvitation(result: { inviteCode: string, confirmation: string }): void {

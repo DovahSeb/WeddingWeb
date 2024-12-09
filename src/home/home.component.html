@@ -17,16 +17,19 @@
         <h1>Margot & Sebastien</h1>
         <p class="wedding-date">Le Mardi 14 Janvier 2025</p>
         <p class="wedding-address">
-            Mairie Annexe de Sainte-Suzanne<br />
+            Mairie annexe de Sainte-Suzanne<br />
             &<br />
             15 bis Impasse Corbeille d’Or, Sainte-Suzanne
         </p>
         <p class="wedding-location">Île de La Réunion</p>
-        <p class="countdown">{{ countdown.days }} JOURS {{ countdown.hours }} H {{ countdown.minutes }} M {{countdown.seconds}}S</p>
+        <p class="countdown">{{ countdown.days }} JOURS {{ countdown.hours }}H {{ countdown.minutes }}M {{countdown.seconds}}S</p>
         <button class="rsvp-button" (click)="toggleRsvpForm()">RSVP</button>
         @if(showRsvpForm){
             <div class="rsvp-form">
-                <input type="text" placeholder="Entrez votre code d'invitation" [(ngModel)]="inviteCode" class="invite-input"/>
+                <input type="text" placeholder="Entrez votre code d'invitation" [(ngModel)]="inviteCode" (ngModelChange)="validateInviteCode()" class="invite-input"/>
+                @if(inviteCodeMessage){
+                    <small style="color: #af6e4d; margin-bottom: 10px;">{{ inviteCodeMessage }}</small>
+                }
                 <div class="confirmation-options">
                     <label>
                         <input type="radio" name="confirmation" value="Yes" [(ngModel)]="confirmation"/> Oui
@@ -35,7 +38,7 @@
                         <input type="radio" name="confirmation" value="No" [(ngModel)]="confirmation"/> Non
                     </label>
                 </div>
-                <button class="submit-button" (click)="confirmInvitation({inviteCode, confirmation})" [disabled]="!inviteCode || !confirmation"> Confirmer</button>
+                <button class="submit-button" (click)="confirmInvitation({inviteCode, confirmation})" [disabled]="!inviteCode || !confirmation || !isCodeValid"> Confirmer</button>
             </div>
         }
     </div>
