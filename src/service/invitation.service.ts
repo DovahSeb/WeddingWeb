@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 
 export class InvitationService {
 
-  private readonly apiUrl = 'http://api.margot-et-sebastien.com';
+  private readonly apiUrl = 'https://api.margot-et-sebastien.com';
   private http = inject(HttpClient);
 
   httpOptions = {
