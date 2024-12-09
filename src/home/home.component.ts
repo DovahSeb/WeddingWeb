@@ -62,7 +62,7 @@ export class HomeComponent {
 
     this.invitationService.confirmInvitation(confirmInvitation).subscribe({
       next: () => this.toastr.show(
-        'Confirmation Enregistrée 💍',
+        'Invitation Enregistrée 💍',
         '',
         { 
           toastClass: 'ngx-toastr wedding-toast' 
