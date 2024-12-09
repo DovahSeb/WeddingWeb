@@ -19,7 +19,7 @@ export class InvitationService {
   }
 
   confirmInvitation(confirmInvitation: ConfirmInvitation): Observable<any>{
-    return this.http.put(`${this.apiUrl}/ConfirmationInvitation`, confirmInvitation, this.httpOptions);
+    return this.http.put(`${this.apiUrl}/ConfirmInvitation`, confirmInvitation, this.httpOptions);
   }
 
   isValidConfirmationCode(code: string): Observable<any>{
