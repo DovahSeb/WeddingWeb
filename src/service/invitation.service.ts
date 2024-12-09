@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 
 export class InvitationService {
 
-  private readonly apiUrl = 'http://api.margot-et-sebastien.com/ConfirmInvitation';
+  private readonly apiUrl = 'http://api.margot-et-sebastien.com';
   private http = inject(HttpClient);
 
   httpOptions = {
@@ -19,7 +19,11 @@ export class InvitationService {
   }
 
   confirmInvitation(confirmInvitation: ConfirmInvitation): Observable<any>{
-    return this.http.put(this.apiUrl, confirmInvitation, this.httpOptions);
+    return this.http.put(`${this.apiUrl}/ConfirmationInviation`, confirmInvitation, this.httpOptions);
+  }
+
+  isValidConfirmationCode(code: string): Observable<any>{
+    return this.http.get(`${this.apiUrl}/IsValidInvitationCode?code=${code}`);
   }
 
 }
