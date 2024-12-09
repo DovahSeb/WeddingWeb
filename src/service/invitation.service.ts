@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { ConfirmInvitation } from '../interfaces/IInvitation';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ import { ConfirmInvitation } from '../interfaces/IInvitation';
 
 export class InvitationService {
 
-  private readonly apiUrl = 'http://api.margot-et-sebastien.com/api/ConfirmInvitation';
+  private readonly apiUrl = 'http://api.margot-et-sebastien.com/ConfirmInvitation';
   private http = inject(HttpClient);
 
   httpOptions = {
@@ -17,8 +18,8 @@ export class InvitationService {
     })
   }
 
-  confirmInvitation(confirmInvitation: ConfirmInvitation){
-    this.http.put(this.apiUrl, confirmInvitation, this.httpOptions);
+  confirmInvitation(confirmInvitation: ConfirmInvitation): Observable<any>{
+    return this.http.put(this.apiUrl, confirmInvitation, this.httpOptions);
   }
 
 }

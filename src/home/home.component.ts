@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormsModule } from "@angular/forms";
 import { CountdownService } from '../service/countdown.service';
 import { InvitationService } from '../service/invitation.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
@@ -18,6 +19,7 @@ export class HomeComponent {
 
   private readonly countdownService = inject(CountdownService);
   private readonly invitationService = inject(InvitationService);
+  private readonly toastr = inject(ToastrService);
   
   ngOnInit(): void {
     this.countdownInit();
@@ -39,7 +41,15 @@ export class HomeComponent {
       confirmation: result.confirmation
     };
 
-    this.invitationService.confirmInvitation(confirmInvitation);
+    this.invitationService.confirmInvitation(confirmInvitation).subscribe({
+      next: () => this.toastr.show(
+        'Confirmation Enregistrée 💍',
+        '',
+        { 
+          toastClass: 'ngx-toastr wedding-toast' 
+        }
+      )
+    });
     this.resetRsvpForm();
   }
 

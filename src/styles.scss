@@ -1,2 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'ngx-toastr/toastr';
+
+.wedding-toast {
+    background-color: #f9f7f4;
+    color: #af6e4d;
+    font-family: 'Cursive', 'Arial', sans-serif; 
+    border: 2px solid #dfcdc3;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .wedding-toast .toast-title {
+    font-weight: bold;
+    color: #af6e4d;
+  }
+  
+  .wedding-toast .toast-message {
+    font-style: italic;
+    color: #af6e4d;
+  }
